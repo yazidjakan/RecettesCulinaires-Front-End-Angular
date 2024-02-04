@@ -1,0 +1,54 @@
+<div class="container">
+    <h2>Ajouter une nouvelle recette</h2>
+
+    <form (ngSubmit)="addRecette()" class="needs-validation" #addRecetteForm="ngForm" novalidate>
+        <div class="mb-3">
+            <label for="titre" class="form-label">Titre :</label>
+            <input type="text" id="titre" name="titre" class="form-control" [(ngModel)]="recette.titre" required>
+            <div class="invalid-feedback">
+                Le titre est requis.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description :</label>
+            <input type="text" id="description" name="description" class="form-control" [(ngModel)]="recette.description" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="description" class="form-label">Image :</label>
+        <div class="card flex justify-content-center">
+          <input type="file" [(ngModel)]="recette.image" />
+        </div>
+        </div>
+        <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingrédients :</label>
+            <input type="text" id="ingredients" name="ingredients" class="form-control" [(ngModel)]="recette.ingredients" required>
+            <div class="invalid-feedback">
+                Les ingrédients sont requis.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="selectedCategories" class="form-label">Catégorie :</label>
+            <select id="categorie" name="selectedCategories" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="recette.categorie.label" required>
+                <option *ngFor="let c of categories" [ngValue]="c">{{ c.label }}</option>
+            </select>
+            <div class="invalid-feedback">
+                La catégorie est requise.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="feedback" class="form-label">Feedback :</label>
+            <input type="text" id="feedback" name="feedback" class="form-control" [(ngModel)]="recette.feedback" required>
+            <div class="invalid-feedback">
+                Le feedback est requis.
+            </div>
+        </div>
+        
+        <div class="mb-3">
+        <div class="card flex justify-content-center">
+            <p-button (click)="addRecette()" label="Ajouter"></p-button>
+        </div>
+        </div>
+        <!--<button type="submit"  class="btn btn-primary"></button>-->
+    </form>
+</div>

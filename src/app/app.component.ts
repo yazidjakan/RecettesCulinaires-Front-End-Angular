@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'RecettesCulinaires';
+  isAuthenticated : boolean = false
+
+
+  constructor(public authService:AuthService, private router:Router){}
+ ngOnInit() {
+  this.isAuthenticated = this.authService.getIsAuthenticated();
+  console.log(this.isAuthenticated);
+  
+}
+  logout():void{
+    this.authService.logout();
+    this.router.navigate(['login']);
+  }
+
 }

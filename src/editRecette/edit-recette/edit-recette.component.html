@@ -1,0 +1,66 @@
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex align-items-center justify-content-center h-100">
+            <div class="col-md-8 col-lg-7 col-xl-6">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                    class="img-fluid" alt="Phone image">
+            </div>
+            <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <h1>Modifier une recette</h1>
+                <form #form="ngForm" (ngSubmit)="updateRecetteById()">
+                    <div class="mb-3">
+                        <label for="id" class="form-label">ID:</label>
+                        <input type="text" class="form-control" id="id" name="id" [(ngModel)]="recette.id"
+                            readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="titre" class="form-label">Titre:</label>
+                        <input type="text" class="form-control" id="titre" name="titre" [(ngModel)]="recette.titre">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description:</label>
+                        <input type="text" class="form-control" id="description" name="description"
+                            [(ngModel)]="recette.description">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Image:</label> <br>
+                        <img width="90" height="70" name="image" [src]="'assets/image/'+recette.image" alt="">
+                        <input type="file" id="image" name="image" class="form-control" [(ngModel)]="recette.image">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="ingredients" class="form-label">Ingredients:</label>
+                        <input type="text" id="ingredients" class="form-control" name="ingredients"
+                            [(ngModel)]="recette.ingredients">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="selectedCategories" class="form-label">Catégorie :</label>
+                        <select id="categorie" name="selectedCategories" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="recette.categorie.label" required>
+                            <option *ngFor="let c of categories" [ngValue]="c">{{ c.label }}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            La catégorie est requise.
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="feedback" class="form-label">Feedback :</label>
+                        <input type="text" id="feedback" name="feedback" class="form-control" [(ngModel)]="recette.feedback" required>
+                        <div class="invalid-feedback">
+                            Le feedback est requis.
+                        </div>
+                    </div>
+
+                    
+
+                    <button type="submit" (click)="updateRecetteById()" class="btn btn-primary">Enregistrer</button>&nbsp;
+                    <button type="button" class="btn btn-danger"
+                        (click)="deleteRecette(recette.id)">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

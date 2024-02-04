@@ -1,0 +1,90 @@
+<div class="container">
+    <h2 style="text-align: center;">Vos Recettes Culinaires Idéales</h2>
+    <p-carousel [value]="recettes" [numVisible]="2" [numScroll]="2" [circular]="true"  [autoplayInterval]="1500" [responsiveOptions]="responsiveOptions">
+        <ng-template let-recette pTemplate="item">
+            <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                <div class="card">
+                    <div class="card-body">
+                <div class="mb-3">
+                    <img src="assets/image/{{ recette.image }}" [alt]="recette.titre" width="200" height="130" class="w-6 shadow-2" />
+                </div>
+                <div>
+                    <h4 class="mb-1">{{ recette.titre }}</h4>
+                    <h6 class="mt-0 mb-3">{{ recette.description }}</h6>
+                    <div class="car-buttons mt-5">
+                        <p-button type="button" styleClass="p-button p-button-rounded mr-2" icon="pi pi-search"></p-button>
+                        <p-button type="button" styleClass="p-button-success p-button-rounded mr-2" icon="pi pi-star-fill"></p-button>
+                    </div>
+                </div>
+               </div>
+            </div>
+        </div>
+        </ng-template>
+    </p-carousel>
+</div>
+<br/>
+<p-table [value]="recettes" [tableStyle]="{'min-width': '60rem'}">
+    <ng-template pTemplate="caption">
+        <div class="flex align-items-center justify-content-between">
+            Recettes
+        </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Titre</th>
+            <th>Image</th>
+            <th>Ingredients</th>
+            <th>Categorie</th>
+            <th>Feedback</th>
+            <th>Action</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-recette>
+        <tr>
+            <td>{{recette.titre}}</td>
+            <td><img [src]="'assets/image/'+recette.image" [alt]="recette.titre" width="100" class="shadow-4" /></td>
+            <td>{{recette.ingredients}}</td>
+            <td>{{recette.categorie.label}}</td>
+            <td><p-rating [ngModel]="">{{recette.feedback}}</p-rating></td>
+            <td>
+                <a [routerLink]="['/edit', recette.id]" class="btn btn-primary">View</a>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="summary">
+        <div class="flex align-items-center justify-content-between">
+            Au total, il y'a {{recettes ? recettes.length : 0 }} recettes.
+        </div>
+    </ng-template>
+</p-table>
+
+<!--<div class="container">
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
+            <th scope="col">Ingrédients</th>
+            <th scope="col">Catégorie</th>
+            <th scope="col">Feedback</th>
+            <th scope="col">Action</th>
+          </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of myRecette">
+            <th scope="row">{{r.id}}</th>
+            <td>{{r.titre}}</td>
+            <td>{{r.description}}</td>
+            <td><img src={{r.image}}  width="200" height="150"/></td>
+            <td>{{r.ingredients}}</td>
+            <td *ngFor="let c of myCategorie">{{c.label}}</td>
+            <td>{{r.feedback}}</td>
+            <td>
+                <a [routerLink]="['/edit', r.id]" class="btn btn-primary">View</a>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+</div>-->
