@@ -18,7 +18,8 @@ export class AuthGuardServiceComponent {
     nom: '',
     age: '',
     email: '',
-    password: ''
+    password: '',
+    roles:[]
   };
 
   email: string = '';

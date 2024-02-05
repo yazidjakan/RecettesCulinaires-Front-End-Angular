@@ -10,11 +10,11 @@ export class CategorieService {
 
   constructor(private http: HttpClient) { }
 
-  private userUrl="http://localhost:8080/api/v1/categories/"
+  private apiUrl="http://localhost:8080/api/v1/categories/"
 
 
   getCategories():Observable<any>{
-    return this.http.get<any>(this.userUrl);
+    return this.http.get<any>(this.apiUrl);
   }
 
   getCategorieById(id:string){

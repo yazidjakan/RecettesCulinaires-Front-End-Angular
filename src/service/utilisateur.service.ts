@@ -9,7 +9,8 @@ export class UtilisateurService {
 
   constructor(private http: HttpClient) { }
 
-  private userUrl="http://localhost:8080/api/v1/utilisateurs/"
+  private userUrl="http://localhost:8080/api/v1/utilisateurs/";
+  private urlAuth="http://localhost:8080/api/v1/auth/";
 
 
   getUsers(){
@@ -21,7 +22,7 @@ export class UtilisateurService {
   }
   
   addUser(myUser:Utilisateur){
-    return this.http.post<Utilisateur>(this.userUrl,myUser);
+    return this.http.post<Utilisateur>(this.urlAuth+"register",myUser);
   }
   updateUser(myUser:Utilisateur){
     return this.http.put<Utilisateur>(this.userUrl,myUser);

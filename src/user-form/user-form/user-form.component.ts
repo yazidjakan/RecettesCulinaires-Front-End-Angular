@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Role } from 'src/model/Role';
+import { RoleService } from 'src/service/role.service';
 import { UtilisateurService } from 'src/service/utilisateur.service';
 
 
@@ -10,24 +12,35 @@ import { UtilisateurService } from 'src/service/utilisateur.service';
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent {
-  constructor(private http:HttpClient, private userService:UtilisateurService, private router:Router){}
+  constructor(private http:HttpClient, private userService:UtilisateurService, private roleService:RoleService, private router:Router){}
 
+  myRoles:Role[]=[];
   myUser:any={
     id:'',
     nom:'',
     age:'',
     email:'',
-    password:''
+    password:'',
+    roles: { id:'', name:'' }
   }
-ngOnInit():void{}
-  addUsers(){
-    this.userService.addUser(this.myUser).subscribe({
-      next:(a)=>{
-        console.log('Utilisateur '+a.nom+' est inscrit avec succès !')
-        this.router.navigate(['login']);
-      }
-    }
-    )
-  }
-
+ngOnInit():void{
+  this.getRoles();
 }
+ 
+getRoles(){
+  this.roleService.getRoles().subscribe((data)=>{
+    this.myRoles=data;
+  })
+}
+
+addUsers(){
+  this.userService.addUser(this.myUser).subscribe({
+    next:(a)=>{
+      console.log('Utilisateur '+a.nom+' est inscrit avec succès !')
+      this.router.navigate(['login']);
+    }
+  }
+  )
+}
+}
+
