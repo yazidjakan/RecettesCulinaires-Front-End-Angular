@@ -21,14 +21,7 @@ export class RecetteService {
   }
 
   addRecette(recette: Recette): Observable<Recette> {
-    const authToken = 'eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ5YXppZGpha2FuMEBnbWFpbC5jb20iLCJyb2xlcyI6W3siaWQiOiI2NWJkMDAwYzMyY2I3NTJiMGI3NzA3MjciLCJuYW1lIjoiUk9MRV9VU0VSIn1dLCJpYXQiOjE3MDcwNjkxNzgsImV4cCI6MTcwNzA2OTc3OH0.AE8_kmJrIwILKyg6BE2HiqmRvU_OoEiQ0AJpaMGCM7zaB__xGBprNDkUAAKEVTTN';
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${authToken}`
-    });
-
-    return this.http.post<Recette>(this.recetteurl, recette, { headers, withCredentials: true });
+    return this.http.post<Recette>(this.recetteurl, recette);
   }
   updateRecette(recette: Recette): Observable<Recette> {
     return this.http.put<Recette>(this.recetteurl, recette);

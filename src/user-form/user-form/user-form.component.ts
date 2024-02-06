@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Role } from 'src/model/Role';
@@ -33,14 +33,20 @@ getRoles(){
   })
 }
 
-addUsers(){
+addUsers() {
   this.userService.addUser(this.myUser).subscribe({
-    next:(a)=>{
-      console.log('Utilisateur '+a.nom+' est inscrit avec succès !')
-      this.router.navigate(['login']);
-    }
-  }
-  )
+    next: (response) => {
+      if (response instanceof HttpResponse) {
+        console.log('Utilisateur inscrit avec succès !');
+        this.router.navigate(['login']);
+      } else {
+        console.log('Réponse du serveur:', response);
+      }
+    },
+    error: (error) => {
+      console.error('Erreur lors de l\'inscription :', error);
+    },
+  });
 }
 }
 

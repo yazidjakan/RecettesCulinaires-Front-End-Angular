@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListRecetteComponent } from 'src/listRecette/list-recette/list-recette.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RecetteService } from 'src/service/recettes-culinaires.service';
@@ -15,6 +15,7 @@ import { TagModule } from 'primeng/tag';
 import { FileUploadModule } from 'primeng/fileupload';
 import { CarouselModule } from 'primeng/carousel';
 import { CardModule } from 'primeng/card';
+import { JwtInterceptor } from 'src/security/jwt-interceptor';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { CardModule } from 'primeng/card';
     EditRecetteComponent
   ],
   providers:[
-    RecetteService
+    RecetteService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
   ],
   imports: [
     CommonModule,

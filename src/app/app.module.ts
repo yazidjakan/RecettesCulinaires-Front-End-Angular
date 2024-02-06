@@ -12,6 +12,8 @@ import { HomeComponent } from 'src/home/home/home.component';
 import { ButtonModule } from 'primeng/button';
 import { DataViewModule } from 'primeng/dataview';
 import { MenubarModule } from 'primeng/menubar';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { JwtInterceptor } from 'src/security/jwt-interceptor';
 
 @NgModule({
   declarations: [
@@ -27,9 +29,10 @@ import { MenubarModule } from 'primeng/menubar';
     UtilisateurModule,
     ButtonModule,
     DataViewModule,
-    MenubarModule
+    MenubarModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,9 +32,7 @@ export class AddRecetteComponent {
   constructor(
     private router: Router,
     private recetteService: RecetteService,
-    private categorieService: CategorieService,
-    private messageService: MessageService
-  ) {}
+    private categorieService: CategorieService  ) {}
 
   ngOnInit(): void {
     this.getCategories();
@@ -47,21 +45,24 @@ export class AddRecetteComponent {
       }
     });
   }
-
   addRecette() {
-    if (this.recette && this.recette.titre) {
-      this.recetteService.addRecette(this.recette).subscribe({
-        next: (r) => {
-          console.log('La recette ' + r.titre + ' a été ajoutée avec succès !');
-          this.router.navigate(['list']);
-        },
-        error: (err) => {
-          console.error('Erreur lors de l\'ajout de la recette:', err);
-        }
-      });
-    } else {
-      console.error('La recette est invalide. Assurez-vous que toutes les propriétés requises sont définies.');
-    }
+    if (this.recette && this.recette.titre && this.recetteService) {      
+        this.recetteService.addRecette(this.recette).subscribe({
+          next: (r) => {
+            console.log('La recette ' + r.titre + ' a été ajoutée avec succès !');
+            this.router.navigate(['list']);
+          },  
+          error: (err) => {
+            if (err.status === 401) {
+              console.error('Vous n\'êtes pas autorisé à ajouter une recette. Veuillez vous connecter.');
+            } else {
+              console.error('Erreur lors de l\'ajout de la recette:', err);
+            }          }
+        });
+      } else {
+        console.error('La recette est invalide. Assurez-vous que toutes les propriétés requises sont définies.');
+      }
   }
+  
 
 }
