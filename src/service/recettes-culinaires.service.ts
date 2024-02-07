@@ -27,8 +27,8 @@ export class RecetteService {
     return this.http.put<Recette>(this.recetteurl, recette);
   }
 
-  updateRecetteById(id: string, recetteupdated: any): Observable<any> {
-    return this.http.put<any>("http://localhost:8080/api/v1/recettes/id/" + id, recetteupdated);
+  updateRecetteById(id: string, recetteupdated: Recette): Observable<Recette> {
+    return this.http.put<Recette>("http://localhost:8080/api/v1/recettes/id/" + id, recetteupdated);
   }
 
   deleteRecette(id: number) {

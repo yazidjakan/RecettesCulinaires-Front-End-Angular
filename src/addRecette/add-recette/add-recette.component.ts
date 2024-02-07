@@ -18,13 +18,13 @@ import { UtilisateurService } from 'src/service/utilisateur.service';
 export class AddRecetteComponent {
 
   recette: Recette = {
-    id: '',
-    titre: '',
-    description: '',
-    image: '',
-    ingredients: '',
-    categorie: { id:'', label:''},
-    feedback: ''
+    id: "",
+    titre: "",
+    description: "",
+    image: "",
+    ingredients: "",
+    categorie: { id:"", label:""},
+    feedback:""
   };
 
   categories: Categorie[] = [];

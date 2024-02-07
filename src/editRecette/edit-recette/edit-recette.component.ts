@@ -15,13 +15,13 @@ export class EditRecetteComponent {
   constructor(private editService:RecetteService, private route:ActivatedRoute, private router:Router, private authService:AuthService, private categorieService:CategorieService){}
 
   recette: Recette = {
-    id: '',
-    titre: '',
-    description: '',
-    image: '',
-    ingredients: '',
-    categorie: { id:'', label:''},
-    feedback: ''
+    id: "",
+    titre: "",
+    description: "",
+    image: "",
+    ingredients: "",
+    categorie: { id:"", label:""},
+    feedback:""
   };
 
   categories:any[]=[];
