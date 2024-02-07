@@ -37,8 +37,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="selectedCategories" class="form-label">Catégorie :</label>
-                        <select id="categorie" name="selectedCategories" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="recette.categorie.label" required>
+                        <label for="categorie" class="form-label">Catégorie :</label>
+                        <select id="categorie"  name="categorie" class="form-control" [ngModelOptions]="{ standalone: true }" [(ngModel)]="recette.categorie" required>
                             <option *ngFor="let c of categories" [ngValue]="c">{{ c.label }}</option>
                         </select>
                         <div class="invalid-feedback">

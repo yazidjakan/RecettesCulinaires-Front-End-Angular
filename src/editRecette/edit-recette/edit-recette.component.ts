@@ -57,7 +57,9 @@ export class EditRecetteComponent {
 
   }
   updateRecetteById(){
+          console.log(this.recette);
     return this.editService.updateRecetteById(this.recette.id, this.recette).subscribe({
+      
       next:(r)=>{
         console.log('La recette '+r.titre+' a été modifié avec succès !');
         this.router.navigate(['list']);
